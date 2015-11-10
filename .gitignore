@@ -3,8 +3,6 @@
 
 *.o
 *.so
-*.h
-*.h.in
 *.sub
 *.status
 *.m4
@@ -22,6 +20,7 @@ hsniff
 #################
 
 autom4te.cache/*
+config.h
 libtool
 stamp-h1
 ylwrap
