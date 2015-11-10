@@ -1,0 +1,49 @@
+#!/bin/sh -e
+#
+# /etc/init.d/nessusd
+#
+# Originally written by Miquel van Smoorenburg <miquels@drinkel.ow.org>.
+# Modified for Debian GNU/Linux by Ian Murdock <imurdock@gnu.ai.mit.edu>.
+# Modified for nessusd by Luca Andreucci <andrew@andrew.org>
+
+# daemon options (-D implied, not needed)
+DAEMONOPTS=""
+# time to wait for daemons death, in seconds
+DODTIME=5
+
+DAEMON=/usr/sbin/nessusd
+PIDFILE=/var/run/nessusd.pid
+NAME=nessusd
+LABEL="Nessus daemon"
+
+test -x $DAEMON || exit 0
+
+case "$1" in
+  start)
+    echo -n "Starting $LABEL: "
+    start-stop-daemon --start --exec $DAEMON -- $DAEMONOPTS -D
+    echo "nessusd."
+    ;;
+  stop)
+    echo -n "Stopping $LABEL: "
+    start-stop-daemon --stop --pidfile $PIDFILE --oknodo --exec $DAEMON
+    echo "nessusd."
+      ;;
+  restart)
+    echo -n "Restarting $LABEL: "
+    start-stop-daemon --stop --pidfile $PIDFILE --oknodo --exec $DAEMON
+    sleep "$DODTIME"s
+    start-stop-daemon --start --exec $DAEMON -- $DAEMONOPTS -D
+    echo "nessusd."
+    ;;
+  reload|force-reload)
+    echo "Reloading $LABEL configuration files"
+    start-stop-daemon --stop --pidfile $PIDFILE --signal 1 --exec $DAEMON
+    ;;
+  *)
+    echo "Usage: /etc/init.d/$NAME {start|stop|restart|reload}"
+    exit 1
+    ;;
+esac
+
+exit 0
