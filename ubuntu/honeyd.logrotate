@@ -1,0 +1,7 @@
+/var/log/honeypot/services.log /var/log/honeypot/honeyd.log /var/log/honeypot/daemon.log {
+  missingok
+  notifempty
+  daily
+  rotate 7
+  compress
+}
