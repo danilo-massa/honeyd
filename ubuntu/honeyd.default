@@ -2,7 +2,7 @@
 
 # Master system-wide honeyd switch. The initscript
 # will not run if it is not set to yes.
-RUN="yes"
+RUN="no"
 
 
 # Default options.
@@ -10,13 +10,13 @@ RUN="yes"
 # an interface himself) 
 # Note: Use only one! if you wish to use
 # more than one use multiple -i in OPTIONS
-INTERFACE="eth0"
+INTERFACE=""
 
 # Network Honeyd will listen for. IF this is not set
 # Honeyd will claim _all_ IP addresses set on the configured
 # interface (which is probably _not_ what you want)
 # This "sane" default will prevent you from doing it.
-NETWORK=62.152.118.184
+NETWORK=
 
 # You can set some other options here for example:
 # Notice that some of the options are already defined in the

@@ -21,7 +21,7 @@
 
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
 # Daemon locations
-DAEMON=/usr/bin/honeyd
+DAEMON=/opt/honeyd/bin/honeyd
 # Daemon names
 NAME=honeyd
 # Pidfiles
@@ -29,7 +29,7 @@ PIDFILE=/var/run/honeyd.pid
 # Labels
 LABEL="Honeyd daemon"
 DEFAULT=/etc/default/honeyd
-LOGDIR="/var/log/honeypot"
+LOGDIR="/var/log/honeyd"
 DAEMONLOG="$LOGDIR/daemon.log"
 # time to wait for daemons death, in seconds
 DODTIME=5
@@ -102,11 +102,11 @@ trap "" 1
 trap "" 15
 
 # This is the network in which honeyd will work
-DAEMONOPTS="-f /etc/honeypot/honeyd.conf -l $LOGDIR/honeyd.log"
-DAEMONOPTS="$DAEMONOPTS -p /etc/honeypot/nmap.prints"
-DAEMONOPTS="$DAEMONOPTS -a /etc/honeypot/nmap.assoc"
-DAEMONOPTS="$DAEMONOPTS -0 /etc/honeypot/pf.os"
-DAEMONOPTS="$DAEMONOPTS -x /etc/honeypot/xprobe2.conf"
+DAEMONOPTS="-f /etc/honeyd/honeyd.conf -l $LOGDIR/honeyd.log"
+DAEMONOPTS="$DAEMONOPTS -p /opt/honeyd/share/honeyd/nmap.prints"
+DAEMONOPTS="$DAEMONOPTS -a /opt/honeyd/share/honeyd/nmap.assoc"
+DAEMONOPTS="$DAEMONOPTS -0 /opt/honeyd/share/honeyd/pf.os"
+DAEMONOPTS="$DAEMONOPTS -x /opt/honeyd/share/honeyd/xprobe2.conf"
 DAEMONOPTS="$DAEMONOPTS -s $LOGDIR/services.log"
 
 # Does the user exist?
