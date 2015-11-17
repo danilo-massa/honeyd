@@ -139,7 +139,7 @@ start()
     date=`date -R`
     echo "$date - Starting honeyd" >>$LOGDIR/daemon.log
     start-stop-daemon --quiet --start --pidfile "$PIDFILE" \
-        --exec $DAEMON --chdir /usr/share/honeyd/ \
+        --exec $DAEMON --chdir /opt/honeyd/share/honeyd/ \
     	-- $DAEMONOPTS $INTERFACE $NETWORK >>$LOGDIR/daemon.log 2>&1
 }
 
